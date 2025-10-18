@@ -1,0 +1,24 @@
+[project]
+name = "proyecto-sistemas-de-gestion-de-activos"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "JJCD_2005", email = "juanjoseca70@gmail.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/proyecto_sistemas_de_gestion_de_activos"]
