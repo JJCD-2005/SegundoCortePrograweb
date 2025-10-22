@@ -1,0 +1,45 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registro de Usuario</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <div class="form-field">
+            {{ form.name.label(text="Nombre Completo") }}
+            {{ form.name(placeholder="Tu Nombre") }}
+            {% for error in form.name.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div class="form-field">
+            {{ form.email.label(text="Correo Electrónico") }}
+            {{ form.email(placeholder="Tu Correo Electrónico") }}
+            {% for error in form.email.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div class="form-field">
+            {{ form.password.label(text="Contraseña") }}
+            {{ form.password(placeholder="Contraseña") }}
+            {% for error in form.password.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-field">
+            {{ form.password2.label(text="Repetir Contraseña") }}
+            {{ form.password2(placeholder="Repetir Contraseña") }}
+            {% for error in form.password2.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        {{ form.submit(class="form-submit", value="Registrar") }}
+    </form>
+    <p style="text-align: center; margin-top: 20px;">¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Accede aquí</a>.</p>
+</div>
+{% endblock %}

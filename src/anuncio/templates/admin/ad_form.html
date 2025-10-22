@@ -1,0 +1,32 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registrar Nuevo Activo</h2>
+    <form action="{{ url_for('register_asset') }}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-field">
+            {{ form.name.label(text="Nombre del Activo / Código de ID") }}
+            {{ form.name(placeholder="Ej: Laptop HP-001, Servidor RACK-4", size=64) }}
+            {% for error in form.name.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-field">
+            {{ form.value.label(text="Valor de Adquisición/Contable ($)") }}
+            {{ form.value(placeholder="Ej: 1500.00") }}
+            {% for error in form.value.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-field">
+            {{ form.description.label(text="Descripción y Ubicación") }}
+            {{ form.description(placeholder="Detalles técnicos y ubicación física (Ej: Piso 3, Oficina 301)", rows=6) }}
+            {% for error in form.description.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="form-submit", value="Registrar Activo") }}
+    </form>
+</div>
+{% endblock %}

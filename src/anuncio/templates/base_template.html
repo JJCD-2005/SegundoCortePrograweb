@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Gestión de Activos Empresarial</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header-nav">
+        <div class="nav-content">
+            <a class="logo" href="{{ url_for('index') }}">Gestión de Activos</a>
+            <nav class="nav-links">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('register_asset') }}">Registrar Activo</a>
+                    <span style="font-style: italic;">Bienvenido, {{ current_user.name }}</span> 
+                    <a href="{{ url_for('logout') }}">Salir</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Acceder</a>
+                    <a href="{{ url_for('signup') }}">Registrar</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category if category != 'message' else 'info' }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ now().year }} Sistema de Gestión de Activos Empresarial.</p> 
+        </div>
+    </footer>
+</body>
+</html>

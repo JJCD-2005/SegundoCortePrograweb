@@ -1,0 +1,24 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<div class="ad-detail-view">
+    <h1>Ficha Técnica del Activo: {{ asset.name }}</h1>
+    
+    <span class="ad-detail-price">Valor Contable: ${{ "{:,.2f}".format(asset.value) }}</span>
+
+    <div class="ad-detail-meta-info">
+        <p><strong>ID/Nombre:</strong> {{ asset.name }}</p>
+        <p><strong>Registrado por:</strong> {{ asset.author.name }}</p>
+        <p><strong>Fecha de registro:</strong> {{ asset.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+    </div>
+
+    <h2>Descripción y Localización</h2>
+    <div class="ad-detail-description">
+        <p>{{ asset.description }}</p>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="{{ url_for('index') }}" class="button-link" style="background-color: #6c757d;">Volver al Listado</a>
+    </div>
+</div>
+{% endblock %}

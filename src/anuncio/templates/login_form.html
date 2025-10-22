@@ -1,0 +1,34 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Acceder al Sistema</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        
+        <div class="form-field">
+            {{ form.email.label(text="Correo Electrónico") }}
+            {{ form.email(placeholder="Correo Electrónico") }}
+            {% for error in form.email.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div class="form-field">
+            {{ form.password.label(text="Contraseña") }}
+            {{ form.password(placeholder="Contraseña") }}
+            {% for error in form.password.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div class="form-field" style="display: flex; align-items: center; margin-bottom: 25px;">
+            {{ form.remember_me(style="margin-right: 5px;") }}
+            {{ form.remember_me.label(text="Recordarme") }}
+        </div>
+        
+        {{ form.submit(class="form-submit", value="Acceder") }}
+    </form>
+    <p style="text-align: center; margin-top: 20px;">¿No tienes cuenta? <a href="{{ url_for('signup') }}">Regístrate aquí</a>.</p>
+</div>
+{% endblock %}

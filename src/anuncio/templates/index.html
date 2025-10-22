@@ -1,0 +1,26 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1 class="page-title">Listado de Activos Registrados</h1>
+    {% if assets %}
+        <div class="ad-list">
+            {% for asset in assets %}
+                <div class="ad-card">
+                    <div>
+                        <h3>{{ asset.name }}</h3>
+                        <p class="ad-meta">Registrado por: {{ asset.author.name }} | {{ asset.timestamp.strftime('%Y-%m-%d') }}</p>
+                        <p>{{ asset.description[:100] }}...</p>
+                    </div>
+                    <div>
+                        <span class="ad-price">Valor: ${{ "{:,.2f}".format(asset.value) }}</span>
+                        <a href="{{ url_for('asset_view', slug=asset.slug) }}" class="ad-details-link">Ver Ficha</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="flash-info" style="text-align: center;">
+            No hay activos registrados en el sistema. ¡Utiliza la opción "Registrar Activo" para empezar!
+        </div>
+    {% endif %}
+{% endblock %}
